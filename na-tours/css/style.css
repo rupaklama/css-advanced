@@ -1,0 +1,38 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* universal selector to select all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* everything related to the font goes into body selector */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+}
+
+.header {
+  height: 95vh;
+  /* Adding Gradient going from first color to second one & start from left to right bottom side */
+  background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)),
+    url("../img/hero.jpg") no-repeat top/cover;
+
+  /* clip-path property lets you clip an element to a basic shape or to an SVG source */
+  /* polygon(x y, x y, x y, x y) - x is horizontal & y is vertical of 4 corners */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* https://bennettfeely.com/clippy/ - to get values for different shapes */
+}
