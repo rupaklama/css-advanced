@@ -14,7 +14,7 @@ Dark green: #28b485
   box-sizing: border-box;
 }
 
-/* everything related to the font goes into body selector */
+/* everything related to the font & others goes into body selector */
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -25,6 +25,7 @@ body {
 }
 
 .header {
+  position: relative;
   height: 95vh;
   /* Adding Gradient going from first color to second one & start from left to right bottom side */
   background: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)),
@@ -35,4 +36,100 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
   /* https://bennettfeely.com/clippy/ - to get values for different shapes */
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  /* relative to the parent element */
+  top: 50%;
+  left: 50%;
+
+  /* relative to the Element itself to be at the center */
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  text-transform: uppercase;
+  color: #fff;
+
+  /* hack to fix shake in the animation */
+  backface-visibility: hidden;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  /* Two Animation properties that is require */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+
+  /* Optional Animation properties */
+  /* animation-delay: 3s; */
+  /* animation-iteration-count: 3; */
+  animation-timing-function: ease-out;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17px;
+
+  /* most important ones */
+  /* animation-name: moveInRight;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; */
+  animation: moveInRight 1s ease-out;
+}
+
+/* NOTE - For the browser performance, it is the best to only animate Two Different properties. 
+  The Browser is optimized for these two properties - 1. Opacity 2. Transform
+*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
 }
