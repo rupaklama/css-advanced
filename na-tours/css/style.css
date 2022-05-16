@@ -56,6 +56,8 @@ body {
 
   /* relative to the Element itself to be at the center */
   transform: translate(-50%, -50%);
+
+  text-align: center;
 }
 
 .heading-primary {
@@ -64,6 +66,8 @@ body {
 
   /* hack to fix shake in the animation */
   backface-visibility: hidden;
+
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -132,4 +136,35 @@ body {
     /* translate 0 is at the original position, normal point */
     transform: translate(0);
   }
+}
+
+/* pseduo class */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+
+  /* NOTE - HIGHER VALUES like 100, 200, 500px creates a nice even & SAME radius on the button */
+  border-radius: 100px;
+
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* on click */
+.btn:active {
+  transform: translateY(-1px);
+  /* less shadow & blur on click */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
