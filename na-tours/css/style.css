@@ -150,6 +150,8 @@ body {
   border-radius: 100px;
 
   transition: all 0.2s;
+
+  position: relative;
 }
 
 .btn:hover {
@@ -167,4 +169,51 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+
+  /* related to the button */
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+
+  /* hidden behind the button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  /* trick to fade out */
+  opacity: 0;
+}
+
+@keyframes moveInBottom {
+  /* this styles will apply before animation starts by doing 'animation-fill-mode: backwards;' */
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
 }
