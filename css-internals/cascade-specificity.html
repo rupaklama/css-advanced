@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cascade & Specificity</title>
+  </head>
+  <style>
+    /* Cascade & Selector Specificity is how css rule gets precedence on one over another
+      note - !important has the highest Specificity and it is the last resource to use as only needed.
+      Not a good practice to use !important for maintainable code. First priority is the id, class & elements.
+    */
+    body {
+      padding: 50px;
+    }
+
+    .button {
+      font-size: 20px;
+      color: white;
+      background-color: blue;
+    }
+
+    a {
+      background-color: purple;
+    }
+
+    /* Highest Specificity - 1 id, 2 classes, 2 elements therefore this rule will take precedence over all the rules */
+    #nav div.pull-right a.button {
+      background-color: orangered;
+    }
+
+    /* Pseudo Class counts 1 on specificity as a Class - 1 id, 2 classes, 1 element */
+    #nav a.button:hover {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <nav id="nav">
+      <div class="pull-right">
+        <a href="#" class="button button-danger">Test Link</a>
+      </div>
+    </nav>
+  </body>
+</html>
