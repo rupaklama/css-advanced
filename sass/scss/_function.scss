@@ -1,0 +1,5 @@
+/* Function takes arguments just like a Mixin then it does something with the args & returns some value */
+
+@function divider($a, $b) {
+  @return $a / $b;
+}

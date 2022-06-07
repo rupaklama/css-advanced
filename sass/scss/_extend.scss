@@ -1,0 +1,13 @@
+/* inheritance - '%' is a placeholder sign to extend the style */
+%btn-placeholder {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: $width-button;
+  color: $color-text-light;
+}
+
+// note - mixins are more maintainable than extend, try to minimize the use of extends

@@ -1,0 +1,11 @@
+/* A Mixin is basically a Set of Styles or reuseable code that we want to re-use */
+
+// name
+@mixin clearfix {
+  // to clear floating elements
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
