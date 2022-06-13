@@ -1,0 +1,39 @@
+/* 7 - 1  CSS Architecture pattern where we create 7 Folders & 1 Main.scss file */
+
+/* This base partial file is for low level basics such as reset, html styles &  body element selectors etc */
+
+/* universal selector to select all elements */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+
+  /* Applying inheritance */
+  box-sizing: inherit;
+}
+
+/* to easily calculate REM unit */
+html {
+  /* Bad practice on setting font-size in 'pxs' as we cannot change the default root font size 
+    The default font size always stays the same.
+  */
+
+  /*  100% is equal to the Current Font Size - 16px & Percents are also scalable like ems.
+    Think of it this way: 1.5em is 1.5 times larger, and 150% is 150 percent of the font size. 
+    Percents are also good for mobile development because of their scalability.
+
+      we want the root font size to be 10px so dividing 10 / 16 = 0.625, .625 * 16 = 10px.
+      Note - if we want to make a change to the Root default font size to be 20px, 
+       20 / 16 = 1.25, 1.25 * 16 = 20px 
+       font-size: 125%; // 20px
+*/
+
+  /* 10 px */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

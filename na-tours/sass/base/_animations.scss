@@ -1,0 +1,53 @@
+/* NOTE - For the browser performance, it is the best to only animate Two Different properties. 
+  The Browser is optimized for these two properties - 1. Opacity 2. Transform
+*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  /* this styles will apply before animation starts by doing 'animation-fill-mode: backwards;' */
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0);
+  }
+}

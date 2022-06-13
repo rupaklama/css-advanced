@@ -1,4 +1,43 @@
+/* partial files */
+/* This 'abstracts' dir will host code that doesn't output to CSS */
 /* Variables */
+/* NOTE - For the browser performance, it is the best to only animate Two Different properties. 
+  The Browser is optimized for these two properties - 1. Opacity 2. Transform
+*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  /* this styles will apply before animation starts by doing 'animation-fill-mode: backwards;' */
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    /* translate 0 is at the original position, normal point */
+    transform: translate(0); } }
+
+/* 7 - 1  CSS Architecture pattern where we create 7 Folders & 1 Main.scss file */
+/* This base partial file is for low level basics such as reset, html styles &  body element selectors etc */
 /* universal selector to select all elements */
 *,
 *::after,
@@ -26,6 +65,9 @@ html {
   /* 10 px */
   font-size: 62.5%; }
 
+body {
+  box-sizing: border-box; }
+
 /* everything related to the font & others goes into body selector */
 body {
   font-family: "Lato", sans-serif;
@@ -33,9 +75,85 @@ body {
   /* font-size: 16px; */
   line-height: 1.7;
   color: #777;
-  padding: 3rem;
-  box-sizing: border-box; }
+  padding: 3rem; }
 
+/* it could a component also */
+.heading-primary {
+  text-transform: uppercase;
+  color: #fff;
+  /* hack to fix shake in the animation */
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    /* Two Animation properties that is require */
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* Optional Animation properties */
+    /* animation-delay: 3s; */
+    /* animation-iteration-count: 3; */
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.7rem;
+    /* most important ones */
+    /* animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; */
+    animation: moveInRight 1s ease-out; }
+
+/* Button Component with pseduo class */
+.btn {
+  /* on click */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /* NOTE - HIGHER VALUES like 100, 200, 500px creates a nice even & SAME radius on the button */
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 1.6rem; }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* trick to fade out */
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    /* less shadow & blur on click */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn::after {
+    content: "";
+    display: inline-block;
+    /* related to the button */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* hidden behind the button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s; }
+  .btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; }
+
+/* Nesting */
 .header {
   position: relative;
   height: 95vh;
@@ -45,139 +163,17 @@ body {
   /* polygon(x y, x y, x y, x y) - x is horizontal & y is vertical of 4 corners */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* https://bennettfeely.com/clippy/ - to get values for different shapes */ }
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
-
-.header__logo {
-  height: 3.5rem; }
-
-.header__text-box {
-  position: absolute;
-  /* relative to the parent element */
-  top: 50%;
-  left: 50%;
-  /* relative to the Element itself to be at the center */
-  transform: translate(-50%, -50%);
-  text-align: center; }
-
-.heading-primary {
-  text-transform: uppercase;
-  color: #fff;
-  /* hack to fix shake in the animation */
-  backface-visibility: hidden;
-  margin-bottom: 6rem; }
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  /* Two Animation properties that is require */
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  /* Optional Animation properties */
-  /* animation-delay: 3s; */
-  /* animation-iteration-count: 3; */
-  animation-timing-function: ease-out; }
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.7rem;
-  /* most important ones */
-  /* animation-name: moveInRight;
-  animation-duration: 1s;
-  animation-timing-function: ease-out; */
-  animation: moveInRight 1s ease-out; }
-
-/* NOTE - For the browser performance, it is the best to only animate Two Different properties. 
-  The Browser is optimized for these two properties - 1. Opacity 2. Transform
-*/
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem); }
-  80% {
-    transform: translateX(1rem); }
-  100% {
-    opacity: 1;
-    /* translate 0 is at the original position, normal point */
-    transform: translate(0); } }
-
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem); }
-  80% {
-    transform: translateX(-1rem); }
-  100% {
-    opacity: 1;
-    /* translate 0 is at the original position, normal point */
-    transform: translate(0); } }
-
-/* pseduo class */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  /* NOTE - HIGHER VALUES like 100, 200, 500px creates a nice even & SAME radius on the button */
-  border-radius: 10rem;
-  transition: all 0.2s;
-  position: relative;
-  font-size: 1.6rem; }
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 3rem 2rem rgba(0, 0, 0, 0.2); }
-
-/* on click */
-.btn:active {
-  transform: translateY(-1px);
-  /* less shadow & blur on click */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
-
-.btn--white {
-  background-color: #fff;
-  color: #777; }
-
-.btn::after {
-  content: "";
-  display: inline-block;
-  /* related to the button */
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  /* hidden behind the button */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all 0.4s; }
-
-.btn--white::after {
-  background-color: #fff; }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  /* trick to fade out */
-  opacity: 0; }
-
-@keyframes moveInBottom {
-  /* this styles will apply before animation starts by doing 'animation-fill-mode: backwards;' */
-  0% {
-    opacity: 0;
-    transform: translateY(3rem); }
-  100% {
-    opacity: 1;
-    /* translate 0 is at the original position, normal point */
-    transform: translate(0); } }
-
-.btn--animated {
-  animation: moveInBottom 0.5s ease-out 0.75s;
-  animation-fill-mode: backwards; }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    /* relative to the parent element */
+    top: 50%;
+    left: 50%;
+    /* relative to the Element itself to be at the center */
+    transform: translate(-50%, -50%);
+    text-align: center; }

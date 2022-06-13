@@ -1,0 +1,68 @@
+/* Button Component with pseduo class */
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+
+    /* NOTE - HIGHER VALUES like 100, 200, 500px creates a nice even & SAME radius on the button */
+    border-radius: 10rem;
+
+    transition: all 0.2s;
+
+    position: relative;
+
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* trick to fade out */
+      opacity: 0;
+    }
+  }
+
+  /* on click */
+  &:active {
+    transform: translateY(-1px);
+    /* less shadow & blur on click */
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: #fff;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+
+    /* related to the button */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+
+    /* hidden behind the button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+}

@@ -1,0 +1,40 @@
+/* Nesting */
+.header {
+  position: relative;
+  height: 95vh;
+  /* Adding Gradient going from first color to second one & start from left to right bottom side */
+  background: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url("../img/hero.jpg") no-repeat top/cover;
+
+  /* clip-path property lets you clip an element to a basic shape or to an SVG source */
+  /* polygon(x y, x y, x y, x y) - x is horizontal & y is vertical of 4 corners */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* https://bennettfeely.com/clippy/ - to get values for different shapes */
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    /* relative to the parent element */
+    top: 50%;
+    left: 50%;
+
+    /* relative to the Element itself to be at the center */
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+  }
+}
