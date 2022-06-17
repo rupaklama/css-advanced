@@ -9,6 +9,7 @@ body {
 }
 
 /* it could a component also */
+// H1
 .heading-primary {
   text-transform: uppercase;
   color: $color-white;
@@ -45,5 +46,43 @@ body {
     animation-duration: 1s;
     animation-timing-function: ease-out; */
     animation: moveInRight 1s ease-out;
+  }
+}
+
+// H2
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  display: inline-block;
+
+  // bg text color
+  -webkit-background-clip: text;
+  // applying bg color
+  color: transparent;
+
+  letter-spacing: 0.2rem;
+
+  transition: all 0.2s;
+  &:hover {
+    // scale to 110%
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+}
+
+// H3
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
   }
 }
