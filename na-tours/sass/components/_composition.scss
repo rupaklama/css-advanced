@@ -10,6 +10,9 @@
 
     transition: all 0.2s;
 
+    // only on border radius element
+    transition: border-radius 0s;
+
     // note - with outline we can do things that can't be done with border
     outline-offset: 2rem; // space between
 
@@ -33,10 +36,12 @@
       transform: scale(1.05) translateY(-0.5rem);
       box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
       z-index: 20;
+
+      border-radius: 0;
     }
   }
 
-  // select photos not hovering to shrink
+  // select photos which are not hovering to get shrink
   &:hover &__photo:not(:hover) {
     transform: scale(0.95);
   }
