@@ -1,0 +1,65 @@
+.card {
+  /* The perspective property is used to give a 3D-positioned element some perspective.
+      The perspective property defines how far the object is away from the user. 
+      So, a lower value will result in a more intensive 3D effect than a higher value.
+      
+      When defining the perspective property for an element, 
+      it is the CHILD elements that get the perspective view, NOT the element itself.
+
+      Note - This need to define in the Parent Element
+  */
+
+  // huge value for less 3D effect to bring closer to user
+  perspective: 150rem;
+  // to work in firefox browser as well
+  -moz-perspective: 150rem;
+
+  position: relative;
+
+  // note - since the elements are positioned absolute, the parent looses its height
+  // parent height to be same as childrens
+  height: 50rem;
+
+  &__side {
+    height: 50rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 2rem;
+
+    transition: all 0.5s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    // to hide back part of the element
+    backface-visibility: hidden;
+
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      // note - before hovering, the back side is already flipped
+      transform: rotateY(180deg);
+
+      &-color {
+        background: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    // negative value is to flip from the left side
+    transform: rotateY(-180deg);
+  }
+
+  // note - the back side is already 180 after flip, flipping to the original position
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
