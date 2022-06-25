@@ -12,6 +12,8 @@
 
   /* clip-path property lets you clip an element to a basic shape or to an SVG source */
   /* polygon(x y, x y, x y, x y) - x is horizontal & y is vertical of 4 corners */
+
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
   /* https://bennettfeely.com/clippy/ - to get values for different shapes */
