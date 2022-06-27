@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* partial files */
 /* This 'abstracts' dir will host code that doesn't output to CSS */
 /* Variables */
@@ -365,6 +366,33 @@ body {
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
 
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-12deg); }
+  .story > * {
+    transform: skewX(12deg); }
+  .story__shape {
+    width: 15rem;
+    height: 15rem;
+    background-color: orangered;
+    float: left;
+    /**
+     shape-outside CSS property defines a shape—which may be non-rectangular—around which adjacent inline content should wrap. By default, inline content wraps around its margin box; shape-outside provides a way to customize this wrapping, making it possible to wrap text around complex objects rather than simple boxes
+     */
+    shape-outside: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translate(-3rem) skewX(12deg); }
+  .story__img {
+    height: 100%; }
+  .story__text {
+    transform: skewX(12deg); }
+
 .row {
   max-width: 114rem;
   margin: 0 auto; }
@@ -427,5 +455,9 @@ body {
 
 .section-tours {
   background-color: #f7f7f7;
-  padding: 25rem 0 50rem 0;
+  padding: 25rem 0;
   margin-top: -10rem; }
+
+.section-stories {
+  padding: 15rem 0;
+  background-color: #f7f7f7; }

@@ -1,0 +1,44 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  & > * {
+    // note - multiple transform property does not work in the same time now
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    background-color: orangered;
+    float: left;
+
+    /**
+     shape-outside CSS property defines a shape—which may be non-rectangular—around which adjacent inline content should wrap. By default, inline content wraps around its margin box; shape-outside provides a way to customize this wrapping, making it possible to wrap text around complex objects rather than simple boxes
+     */
+    // note  - element needs to be using float property, width & height dimensions
+    // 50% - the radius of a circle so the 50% radius is the half of Height & Width of an element
+    shape-outside: circle(50% at 50% 50%); // size area & position - center
+
+    // to make an element circle
+    clip-path: circle(50% at 50% 50%); // size & position - center
+
+    // note - the best way to move around floated element is to use Translate but not Margins
+    transform: translate(-3rem) skewX(12deg); // second value is to straight up image
+  }
+
+  &__img {
+    height: 100%;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+  }
+}
