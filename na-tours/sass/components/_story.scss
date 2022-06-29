@@ -2,6 +2,8 @@
   width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  cursor: pointer;
+  background-color: rgba($color-white, 0.6);
 
   border-radius: 3px;
   padding: 6rem;
@@ -10,18 +12,20 @@
   transform: skewX(-12deg);
 
   & > * {
-    // note - multiple transform property does not work in the same time now
+    // note - multiple transform property does not work at the same time at the moment
     transform: skewX(12deg);
   }
 
   &__shape {
     width: 15rem;
     height: 15rem;
-    background-color: orangered;
+
     float: left;
 
     /**
-     shape-outside CSS property defines a shape—which may be non-rectangular—around which adjacent inline content should wrap. By default, inline content wraps around its margin box; shape-outside provides a way to customize this wrapping, making it possible to wrap text around complex objects rather than simple boxes
+     shape-outside CSS property defines a shape which may be non-rectangular, 
+     around which adjacent inline content should wrap. By default, inline content wraps around its margin box; shape-outside provides a way to customize this wrapping, 
+     making it possible to wrap text around complex objects rather than simple boxes
      */
     // note  - element needs to be using float property, width & height dimensions
     // 50% - the radius of a circle so the 50% radius is the half of Height & Width of an element
@@ -32,13 +36,48 @@
 
     // note - the best way to move around floated element is to use Translate but not Margins
     transform: translate(-3rem) skewX(12deg); // second value is to straight up image
+
+    position: relative;
+    overflow: hidden;
   }
 
   &__img {
     height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden;
+    transition: all 0.5s;
   }
 
   &__text {
     transform: skewX(12deg);
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    /* relative to the Element itself to be at the center */
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+
+    // note - animation, translating & weird glitches to fix
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    // brightness - value lower than 100% makes it darker, above 100% makes it brighter
+    filter: blur(3px) brightness(80%);
   }
 }
