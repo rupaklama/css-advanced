@@ -1,5 +1,6 @@
 /* Button Component with pseduo class */
 .btn {
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -15,6 +16,9 @@
     position: relative;
 
     font-size: $default-font-size;
+
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -42,6 +46,11 @@
     &::after {
       background-color: #fff;
     }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: #fff;
   }
 
   &::after {

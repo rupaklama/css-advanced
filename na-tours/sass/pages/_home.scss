@@ -35,3 +35,34 @@
 
   position: relative;
 }
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book {
+  // applying gradient on top of image, therefore gradient comes first
+  background-image: linear-gradient(
+      // to clip on this angel
+      105deg,
+      // at 0 & 50 percent apply white
+      rgba($color-white, 0.9) 0%,
+      rgba($color-white, 0.9) 50%,
+
+      // other half of image
+      transparent 50%
+    ),
+    url(../img/nat-10.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+
+  height: 50rem;
+
+  &__form {
+    width: 50%;
+    padding: 6rem;
+  }
+}
