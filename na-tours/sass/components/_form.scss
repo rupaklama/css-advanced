@@ -98,6 +98,7 @@
   }
 
   // to select checked radio buttons only
+  // ~ is sibling selector
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }
