@@ -5,3 +5,66 @@
     clear: both;
   }
 }
+
+/**
+ 0 - 600px:      Phone
+ 600 - 900px:    Tablet Portrait
+ 900 - 1200px:   Tablet Landscape
+ 1200 - 1800px:  is where our normal styles apply for regular desktop - Desktop First approach
+ 1800px + :      Big Desktop
+ */
+
+/* Phone */
+// @mixin respond-phone {
+//   @media (max-width: 600px) {
+//     @content;
+//   }
+// }
+
+/**
+  - phone
+  - tab-port
+  - tab-land
+  - big-desktop
+
+  // Media Query priorities
+  // Start with Base + typography then next one
+  ORDER: Base + typography > general layout + grid > page layout > components
+ */
+
+/* MEDIA QUERY MANAGER - Mixin for all breakpoints */
+
+/* 
+  note - REM & EM are not affected by our custom Root Font Size setting(html).
+  In Media Queries, 1REMs & 1EMs is always equal to Browser's Default Font Size 
+  which is always 16px and this can also be modified.
+  Therefore, 1em = 16px in media query.
+*/
+
+// using 'em' for breakpoints since 'rem' fails to work in some browsers
+// EMs are best option for media queries
+// note - not using '(min-width) and (max-width)' as we are overlapping media queries
+// to not to reapeat the same code again and over.
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    // 600px/16px = 37.5em,  px to em
+    @media only screen and (max-width: 37.5em) {
+      @content; //600px
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content; //900px
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content; //1200px
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content; //1800px
+    }
+  }
+}

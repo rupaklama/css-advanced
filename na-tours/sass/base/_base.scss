@@ -30,10 +30,41 @@ html {
        font-size: 125%; // 20px
 */
 
-  /* 10 px */
+  /* // This defines what 1rem is 10 px */
   font-size: 62.5%;
+
+  // MIXINS
+  // This 1200 media query needs to come first, orders matter to take precedence
+  // note - bottom media query takes precedence over on top
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  // width < 600?
+  // @include respond(phone) {
+  //   font-size: 30%; //1 rem = 4.8px;
+  // }
+  // This will be same as above, so no need to define here
+  // This one is for testing only if we want smaller font than above
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12, 12/16
+  }
 }
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%;
+    padding: 0;
+  }
 }

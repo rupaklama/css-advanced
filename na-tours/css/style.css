@@ -1,4 +1,29 @@
 /* partial files */
+/**
+ 0 - 600px:      Phone
+ 600 - 900px:    Tablet Portrait
+ 900 - 1200px:   Tablet Landscape
+ 1200 - 1800px:  is where our normal styles apply for regular desktop - Desktop First approach
+ 1800px + :      Big Desktop
+ */
+/* Phone */
+/**
+  - phone
+  - tab-port
+  - tab-land
+  - big-desktop
+
+  // Media Query priorities
+  // Start with Base + typography then next one
+  ORDER: Base + typography > general layout + grid > page layout > components
+ */
+/* MEDIA QUERY MANAGER - Mixin for all breakpoints */
+/* 
+  note - REM & EM are not affected by our custom Root Font Size setting(html).
+  In Media Queries, 1REMs & 1EMs is always equal to Browser's Default Font Size 
+  which is always 16px and this can also be modified.
+  Therefore, 1em = 16px in media query.
+*/
 /* This 'abstracts' dir will host code that doesn't output to CSS */
 /* Variables */
 /* NOTE - For the browser performance, it is the best to only animate Two Different properties. 
@@ -62,11 +87,25 @@ html {
        20 / 16 = 1.25, 1.25 * 16 = 20px 
        font-size: 125%; // 20px
 */
-  /* 10 px */
+  /* // This defines what 1rem is 10 px */
   font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding: 3rem; }
+  @media only screen and (max-width: 56.25em) {
+    body {
+      font-size: 50%;
+      padding: 0; } }
 
 /* everything related to the font & others goes into body selector */
 body {
@@ -74,8 +113,7 @@ body {
   font-weight: 400;
   /* font-size: 16px; */
   line-height: 1.7;
-  color: #777;
-  padding: 3rem; }
+  color: #777; }
 
 /* it could a component also */
 .heading-primary {
@@ -96,6 +134,10 @@ body {
     /* animation-delay: 3s; */
     /* animation-iteration-count: 3; */
     animation-timing-function: ease-out; }
+    @media only screen and (max-width: 37.5em) {
+      .heading-primary--main {
+        letter-spacing: 1rem;
+        font-size: 5rem; } }
   .heading-primary--sub {
     display: block;
     font-size: 2rem;
@@ -106,6 +148,9 @@ body {
     animation-duration: 1s;
     animation-timing-function: ease-out; */
     animation: moveInRight 1s ease-out; }
+    @media only screen and (max-width: 37.5em) {
+      .heading-primary--sub {
+        letter-spacing: 0.5rem; } }
 
 .heading-secondary {
   font-size: 3.5rem;
@@ -120,6 +165,12 @@ body {
   .heading-secondary:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+  @media only screen and (max-width: 56.25em) {
+    .heading-secondary {
+      font-size: 3rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .heading-secondary {
+      font-size: 2.5rem; } }
 
 .heading-tertiary {
   font-size: 1.6rem;
@@ -585,6 +636,9 @@ body {
   background-color: #333;
   padding: 10rem 0;
   font-size: 1.4rem; }
+  @media only screen and (max-width: 56.25em) {
+    .footer {
+      padding: 8rem 0; } }
   .footer__logo-box {
     text-align: center;
     margin-bottom: 8rem; }
@@ -595,6 +649,10 @@ body {
     border-top: 1px solid #777;
     padding-top: 2rem;
     display: inline-block; }
+    @media only screen and (max-width: 56.25em) {
+      .footer__navigation {
+        width: 100%;
+        text-align: center; } }
   .footer__list {
     list-style: none;
     cursor: pointer; }
@@ -618,12 +676,23 @@ body {
     padding-top: 2rem;
     width: 80%;
     float: right; }
+    @media only screen and (max-width: 56.25em) {
+      .footer__copyright {
+        width: 100%;
+        float: none; } }
 
 .row {
   max-width: 114rem;
   margin: 0 auto; }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 50rem;
+      padding: 0 3rem; } }
   .row:not(:last-child) {
     margin-bottom: 8rem; }
+    @media only screen and (max-width: 56.25em) {
+      .row:not(:last-child) {
+        margin-bottom: 6rem; } }
   .row::after {
     content: "";
     display: table;
@@ -632,6 +701,14 @@ body {
     float: left; }
     .row [class^="col-"]:not(:last-child) {
       margin-right: 6rem; }
+      @media only screen and (max-width: 56.25em) {
+        .row [class^="col-"]:not(:last-child) {
+          width: 100% !important;
+          margin-right: 0;
+          margin-bottom: 6rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .row [class^="col-"] {
+        width: 100% !important; } }
   .row .col-1-of-2 {
     width: calc((100% - 6rem) / 2); }
   .row .col-1-of-4 {
@@ -650,6 +727,10 @@ body {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* https://bennettfeely.com/clippy/ - to get values for different shapes */ }
+  @media only screen and (max-width: 37.5em) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); } }
   .header__logo-box {
     position: absolute;
     top: 4rem;
@@ -680,6 +761,14 @@ body {
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer; }
+  @media only screen and (max-width: 56.25em) {
+    .navigation__button {
+      top: 4rem;
+      right: 4rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .navigation__button {
+      top: 3rem;
+      right: 3rem; } }
 
 .navigation__background {
   height: 6rem;
@@ -691,6 +780,14 @@ body {
   right: 6.5rem;
   background-image: radial-gradient(#7ed56f, #28b485);
   transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1); }
+  @media only screen and (max-width: 56.25em) {
+    .navigation__background {
+      top: 4.5rem;
+      right: 4.5rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .navigation__background {
+      top: 3.5rem;
+      right: 3.5rem; } }
 
 .navigation__nav {
   height: 100vh;
