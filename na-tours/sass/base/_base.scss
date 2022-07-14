@@ -33,6 +33,8 @@ html {
   /* // This defines what 1rem is 10 px */
   font-size: 62.5%;
 
+  // NOTE - Chaning the Default font size according to Media Query below
+
   // MIXINS
   // This 1200 media query needs to come first, orders matter to take precedence
   // note - bottom media query takes precedence over on top

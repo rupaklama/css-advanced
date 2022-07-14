@@ -11,6 +11,16 @@
   font-size: $default-font-size;
   transform: skewX(-12deg);
 
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
   & > * {
     // note - multiple transform property does not work at the same time at the moment
     transform: skewX(12deg);
@@ -35,10 +45,14 @@
     clip-path: circle(50% at 50% 50%); // size & position - center
 
     // note - the best way to move around floated element is to use Translate but not Margins
-    transform: translate(-3rem) skewX(12deg); // second value is to straight up image
+    transform: translateX(-3rem) skewX(12deg); // second value is to straight up image
 
     position: relative;
     overflow: hidden;
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
 
   &__img {
@@ -50,6 +64,10 @@
 
   &__text {
     transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
   }
 
   &__caption {
