@@ -8,7 +8,37 @@
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)
     ),
-    url("../img/hero.jpg") no-repeat top/cover;
+    url("../img/hero-small.jpg") no-repeat top/cover;
+
+  // NOTE - Responsive Image in CSS - all we need to write is Media Query to load images for different sizes
+  // DPI, or dots per inch, is a measure of the resolution
+  // The higher the dpi the better the resolution
+
+  // same as min-width() media query
+  // no need to display High resolution large image for smaller screen
+  @media (min-resolution: 192dpi) and (min-width: 37.5em) {
+    // note - 192dpi is the resolution of Apple retina screen
+    // which is a high resolution to use for a reference here.
+    // Code here will execute for resolution higher than 192dpi
+    background: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.8),
+        rgba($color-secondary-dark, 0.8)
+      ),
+      url("../img/hero.jpg") no-repeat top/cover;
+  }
+
+  // NOTE - when we have a lower resolution screen and the size is huge screen,
+  // it makes sense to display large resolution image as soon as we hit 2000px
+  // basically, we want to see large image as soon as the width becomes larger than 2000px
+  @media (min-width: 125em) {
+    background: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.8),
+        rgba($color-secondary-dark, 0.8)
+      ),
+      url("../img/hero.jpg") no-repeat top/cover;
+  }
 
   /* clip-path property lets you clip an element to a basic shape or to an SVG source */
   /* polygon(x y, x y, x y, x y) - x is horizontal & y is vertical of 4 corners */
