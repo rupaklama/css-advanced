@@ -14,6 +14,20 @@
 
   transition: all 0.3s;
 
+  // NOTE - implementing Graceful Degradation
+  // Graceful degradation is to implement newest features in moder browsers, but falls back
+  // to normal layout in the older browsers
+
+  // @supports CSS at-rule lets you specify declarations that depend on a browser's support for one or more specific CSS features. This is called a feature query. The rule may be placed at the top level of your code or nested inside any other conditional group at-rule.
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    // if browser supports these features, apply this code
+
+    // backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.3);
+  }
+
   // since this a target anchor element - 'target' psedo class is available to redirect
   &:target {
     opacity: 1;
