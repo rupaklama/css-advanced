@@ -1,0 +1,38 @@
+.container {
+  // no bigger than this
+  max-width: 120rem;
+
+  margin: 8rem auto;
+  background-color: var(--color-grey-light-2);
+  box-shadow: var(--shadow-dark);
+
+  // no smaller than this - expand height to fit more content
+  min-height: 50rem;
+}
+
+.header {
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--color-grey-light-2);
+}
+
+.content {
+  display: flex;
+}
+
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+
+  // no shrink since percentage value which auto shrinks itself
+  // if pixel value, allow to shrink to fit the container
+  flex: 0 0 18%;
+}
+
+.hotel-view {
+  background-color: #fff;
+  background-color: orangered;
+
+  // take rest of the available space
+  // short for flex-grow
+  flex: 1;
+}
