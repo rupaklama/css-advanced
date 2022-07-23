@@ -31,11 +31,17 @@
   // no shrink since percentage value which auto shrinks itself
   // if pixel value, allow to shrink to fit the container
   flex: 0 0 18%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hotel-view {
   background-color: #fff;
+
   background-color: orangered;
+  height: 80rem;
 
   // take rest of the available space
   // short for flex-grow
