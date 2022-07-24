@@ -175,6 +175,7 @@
     transition: transform 0.2s,
       // first above transform occurs & we wait or delay .2s for width effect
       width 0.4s 0.2s,
+      // at last
       background-color 0.1s;
   }
 
@@ -222,4 +223,130 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+
+  // note - we always want flexible images in responsive design
+  // so always need to defined Width & Heights in percentage so the image stays fluid
+  &__photo {
+    width: 100%;
+
+    // note - the image should always display as a Block or Inline Block because to avoid having
+    // like small white spaces underneath an image which happens as we leave it as Inline Element
+    display: block;
+  }
+}
+
+/* Hotel Overview */
+.overview {
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
+
+  border-bottom: 1px solid var(--color-grey-light-2);
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+
+    padding: 1.5rem 3rem;
+    cursor: pointer;
+  }
+
+  &__stars {
+    // flex: 1;
+    // note - using margin auto with flexbox to not to take all avilable space
+    // Take space only needed for Content only, very powerful trick
+    margin-right: auto;
+
+    // note - SVG elements behave like an Inline Element creating white-space at the bottom
+    // To remove it set line-height & font-size to 0 but
+    // simple solution is to set parent element to flex box
+    display: flex;
+
+    cursor: pointer;
+  }
+
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+
+  &__location {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-location {
+    margin-right: 0.5rem;
+  }
+
+  &__rating {
+    background-color: var(--color-primary);
+    color: #fff;
+    margin-left: 3rem;
+    padding: 0 2.25rem;
+    cursor: pointer;
+
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: -3px;
+  }
+
+  &__rating-count {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}
+
+/* Button Inline */
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+  font-size: inherit;
+  cursor: pointer;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  display: inline-block;
+  background-color: transparent;
+  transition: all 0.2s;
+
+  &:hover,
+  &:focus {
+    color: var(--color-grey-dark-1);
+    outline: none;
+    animation: pulstate 1s infinite;
+  }
+}
+
+@keyframes pulstate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 1 1rem 4rem rgba(0, 0, 0, 0.25);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
 }
