@@ -246,7 +246,7 @@
   // justify-content: space-around;
   align-items: center;
 
-  border-bottom: 1px solid var(--color-grey-light-2);
+  border-bottom: var(--line);
 
   &__heading {
     font-size: 2.25rem;
@@ -258,7 +258,7 @@
 
   &__stars {
     // flex: 1;
-    // note - using margin auto with flexbox to not to take all avilable space
+    // note - using 'margin auto' with flexbox to not to take all available space like with above
     // Take space only needed for Content only, very powerful trick
     margin-right: auto;
 
@@ -348,5 +348,84 @@
   100% {
     transform: scale(1);
     box-shadow: none;
+  }
+}
+
+/* Paragraph */
+.paragraph:not(:last-of-type) {
+  // :last-of-type - to select last 'p' element
+  margin-bottom: 2rem;
+}
+
+/* List */
+.list {
+  list-style: none;
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+
+  display: flex;
+  // note - using flex-wrap to build a multi-column list
+  flex-wrap: wrap;
+
+  &__item {
+    flex: 0 0 50%;
+    margin-bottom: 0.7rem;
+  }
+
+  // note - using SVG in css
+  &__item::before {
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.7rem;
+
+    // note - can't color svg icon
+    // background-image: url(../img/chevron-thin-right.svg);
+    // background-size: cover;
+
+    // newer browser - CSS Masks to color SVG icons
+    // CSS Mask defines an area where we can look through the element
+    // and see what is behind that element.
+    background-color: var(--color-primary);
+    // note - this makes an icon transparent to its background
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    mask-image: url(../img/chevron-thin-right.svg);
+
+    // similar to background-size: cover;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+}
+
+/* Recommend */
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-dark-3);
+
+  display: flex;
+  align-items: center;
+
+  &__count {
+    margin-right: auto;
+  }
+
+  &__friends {
+  }
+
+  &__photo {
+    // default value for image to be exact same size
+    box-sizing: content-box;
+
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &:not(:last-child) {
+      margin-right: -1.5rem;
+    }
   }
 }
