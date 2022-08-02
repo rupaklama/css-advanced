@@ -19,6 +19,17 @@
   --line: 1px solid var(--color-grey-light-2);
 }
 
+/* Breakpoints */
+// note - can't declare css variables for media query
+// but we can declare Sass variable
+// 1200px breakpoint
+$bp-largest: 75em; // 1200 / 16, 16px is default browser's media query
+
+$bp-large: 68.75em; // 1100px
+$bp-medium: 56.25em; // 900px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
+
 /* Global Reset */
 /* universal selector to select all elements */
 *,
@@ -36,6 +47,12 @@ html {
 
   /* This defines what 1rem is 10 px */
   font-size: 62.5%;
+
+  @media only screen and(max-width: $bp-large) {
+    // note - this effects container width so need to adjust it
+    // 8px
+    font-size: 50%; // 8 / 16 = 0.5
+  }
 }
 
 body {
